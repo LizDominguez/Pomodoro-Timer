@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico|Roboto');
+
+html, body {
+  margin: 0;
+  padding: 0; 
+}
+
+body {
+  background-color: #faf4d5;
+  text-align: center;
+  color: #fff;
+  font-family: 'Roboto';
+}
+
+h1 {
+  font: 80px 'Pacifico';
+  color: #f8111b;
+  margin: 10px  0px 10px 0;
+}
+
+.container {
+  width: 400px;
+  height: 115px;
+  margin: 0 auto;
+  padding-bottom: 30px;
+  text-align: center;
+  color: #509950;
+}
+
+.chooseTime {
+  display: block;
+  float: left;
+  height: 100%;
+  width: 45%;
+  background-color: #f6e6b1;
+  margin: 0px 10px 0px 10px;
+}
+
+h2, span { 
+  font-size: 40px;
+  width: 33.3%;
+  display: block;
+  float: left;
+}
+
+h2 {
+  margin-top: 12%;
+  
+}
+
+span {
+  text-align: center;
+  margin-top: 12%;
+  cursor: pointer;
+}
+
+h3 {
+  background-color: #faf4d5;
+  display: block;
+  font: 15px 'Roboto';
+  text-transform: uppercase;
+  margin: 0 auto;
+}
+
+
+.pomodoro {
+  background-color: #f99e98;
+  height: 300px;
+  width: 300px;
+  border-radius: 200px;
+  border: 10px solid #f8111b;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.timer {  
+  background-color: #f8111b;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
+
+h4 {
+  display: block;
+  font-size: 30px;
+  margin: 0 auto;
+}
+
+p {
+  margin-top: 50px;
+}
+
+a {
+  color: #f6e6b1;
+  text-decoration: none;
+}
+
+
+@media only screen and (max-width: 600px) {
+  
+  h1{
+    font-size: 13vw;
+  }
+  
+}
+
