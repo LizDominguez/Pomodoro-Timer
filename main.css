@@ -1,3 +1,5 @@
+/*Mobile First*/
+
 @import url('https://fonts.googleapis.com/css?family=Pacifico|Roboto');
 
 html, body {
@@ -13,7 +15,7 @@ body {
 }
 
 h1 {
-  font: 80px 'Pacifico';
+  font: 13vw 'Pacifico';
   color: #f8111b;
   margin: 10px  0px 10px 0;
 }
@@ -64,7 +66,7 @@ h3 {
 
 
 .pomodoro {
-  background-color: #f99e98;
+  background-color: #f8111b;
   height: 300px;
   width: 300px;
   border-radius: 200px;
@@ -74,16 +76,20 @@ h3 {
 }
 
 .timer {  
-  background-color: #f8111b;
-  height: 100%;
+  background-color: #f99e98 ;
+  height: 80%;
   width: 100%;
-  margin: 0 auto;
+  position: relative;
+  top: -30%;
 }
 
 h4 {
   display: block;
   font-size: 30px;
   margin: 0 auto;
+  position:relative;
+  top: 37%;
+  z-index: 100;
 }
 
 p {
@@ -96,10 +102,10 @@ a {
 }
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (min-width: 500px) {
   
   h1{
-    font-size: 13vw;
+    font-size: 60px;
   }
   
 }
