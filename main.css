@@ -27,33 +27,36 @@ h1 {
   padding-bottom: 30px;
   text-align: center;
   color: #509950;
+  display: flex;
+  flex-direction: row;
 }
 
-.chooseTime {
-  display: block;
-  float: left;
+.choose-time {
   height: 100%;
   width: 45%;
   background-color: #f6e6b1;
   margin: 0px 10px 0px 10px;
 }
 
-h2, span { 
-  font-size: 40px;
-  width: 33.3%;
-  display: block;
-  float: left;
-}
-
-h2 {
-  margin-top: 12%;
+.time-options {
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
   
 }
 
-span {
+h2, button { 
+  font-size: 40px;
+}
+
+button {
   text-align: center;
-  margin-top: 12%;
+  background: none;
+  border: none;
   cursor: pointer;
+  padding-bottom: 10px;
 }
 
 h3 {
@@ -73,6 +76,7 @@ h3 {
   border: 10px solid #f8111b;
   margin: 0 auto;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .timer {  

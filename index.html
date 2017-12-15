@@ -9,26 +9,41 @@
 
   <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
   
-  <title>Javascript Calculator</title>
+  <title>Pomodoro Timer</title>
   
 </head>
 <body>
   <h1>Pomodoro Timer</h1>
   
   <div class="container">
-    <div class="chooseTime" id="break">
+    <div class="choose-time">
       <h3>Break Length</h3>
-      <span>-</span> <h2>5</h2> <span>+</span>
-  </div>
-    <div class="chooseTime" id="work">
+      <div class="time-options">
+        <button id="sub-break">-</button> 
+        <h2 id="break-time">
+          <!-- break time goes here -->
+        </h2> 
+        <button id="add-break">+</button>
+      </div>
+    </div>
+    
+    <div class="choose-time">
       <h3>Session Length</h3>
-     <span>-</span> <h2> 25</h2> <span>+</span>
-  </div>
+      <div class="time-options">
+        <button id="sub-work">-</button> 
+        <h2 id="work-time">
+          <!-- work time goes here -->
+        </h2> 
+        <button id="add-work">+</button>
+      </div>
+    </div>
   </div>
   
   <div class="pomodoro">
-    <h4 class="type">Session</h4>
-      <h4 class="time">25:00</h4>
+    <h4 class="session-type">Session</h4>
+      <h4 class="time">
+        <!-- Time goes here -->
+      </h4>
     <div class="timer">
     </div>
   </div>
