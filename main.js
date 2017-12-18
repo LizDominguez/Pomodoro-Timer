@@ -1,27 +1,35 @@
 /*jslint browser: true*/
 'use strict';
 
-var breakTimeCon = document.querySelector('#break-time');
-var addBreakBtn = document.querySelector('#add-break');
-var subBreakBtn = document.querySelector('#sub-break');
-var workTimeCon = document.querySelector('#work-time');
-var addWorkBtn = document.querySelector('#add-work');
-var subWorkBtn = document.querySelector('#sub-work');
-var time = document.querySelector('.time');
-var startTimerBtn = document.querySelector('.pomodoro');
-var redFillColor = document.querySelector('.timer');
-var sessionType = document.querySelector('.session-type');
+let breakTimeCon = document.querySelector('#break-time'),
+    addBreakBtn = document.querySelector('#add-break'),
+    subBreakBtn = document.querySelector('#sub-break'),
+    workTimeCon = document.querySelector('#work-time'),
+    addWorkBtn = document.querySelector('#add-work'),
+    subWorkBtn = document.querySelector('#sub-work'),
+    time = document.querySelector('.time'),
+    startTimerBtn = document.querySelector('.pomodoro'),
+    redFillColor = document.querySelector('.timer'),
+    sessionType = document.querySelector('.session-type');
 
-var session = {
+let session = {
   breakTime: 5,
   workTime: 25,
   isInSession: true
 }
 
-var counter;
+let counter,
+    sessionStart = true;
 
 startTimerBtn.addEventListener('click', function() {
-  manageSession();
+  if (sessionStart === true) {
+    manageSession();
+    sessionStart = false;
+  } else {
+    endSession();
+    sessionStart = true;
+  }
+  
 });
 
 addBreakBtn.addEventListener('click', function() {
@@ -100,15 +108,13 @@ function manageSession() {
   if (session.isInSession) {
     session.isInSession = false;
     console.log('Work Time!');
-    minutes = session.workTime - 1;
     sessionType.innerHTML = 'Work Time';
-    startSession(minutes);
+    startSession(session.workTime - 1);
   } else {
     session.isInSession = true;
     console.log('Break Time!');
-    minutes = session.breakTime - 1;
     sessionType.innerHTML = 'Break Time';
-    startSession(minutes);
+    startSession(session.breakTime - 1);
   }
   
 }
