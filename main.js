@@ -10,88 +10,83 @@ var subWorkBtn = document.querySelector('#sub-work');
 var time = document.querySelector('.time');
 var startTimerBtn = document.querySelector('.pomodoro');
 
-var breakTime = 5, workTime = 25;
-var startTimeNow = false;
+var session = {
+  breakTime: 5,
+  workTime: 25,
+}
+
+var counter;
 
 startTimerBtn.addEventListener('click', function() {
-  startTimeNow = true;
-  console.log(startTimeNow);
-  startCountDown();
+  startSession();
 });
 
 addBreakBtn.addEventListener('click', function() {
-  breakTime += 1;
+  session.breakTime += 1;
   UpdateTime();
-  startTimeNow = false;
 });
 
 subBreakBtn.addEventListener('click', function() {
   
-  if (breakTime <= 0) {
-    breakTime = 0;
+  if (session.breakTime <= 1) {
+    session.breakTime = 1;
   } else {
-    breakTime -= 1;
+    session.breakTime -= 1;
   }
 
   UpdateTime();
-  startTimeNow = false;
 });
 
 addWorkBtn.addEventListener('click', function() {
-  workTime += 1;
+  session.workTime += 1;
   UpdateTime();
-  startTimeNow = false;
 });
 
 subWorkBtn.addEventListener('click', function() {
-  
-  if (workTime <= 0) {
-    workTime = 0;
+  if (session.workTime <= 1) {
+    session.workTime = 1;
   } else {
-    workTime -= 1;
+    session.workTime -= 1;
   }
 
   UpdateTime();
-  startTimeNow = false;
 });
 
-function UpdateTime() {
-  
-  breakTimeCon.innerHTML = breakTime;
-  workTimeCon.innerHTML = workTime;
-  
-  time.innerHTML = workTime + ':00';
+function UpdateTime() { 
+  breakTimeCon.innerHTML = session.breakTime;
+  workTimeCon.innerHTML = session.workTime;
+  time.innerHTML = session.workTime + ':00';
+  endSession();
 }
 
-function startCountDown() {
+function startSession() {
   
   var seconds = 60, minutes;
-  minutes = workTime - 1;
-  
-  if (startTimeNow === true && workTime >= 0) {
-    setInterval(function(){ 
-      if (seconds === 0) {
-        seconds = 60;
-      }
-      
-      seconds -= 1;
-      time.innerHTML = minutes + ':' + (seconds < 10 ? '0' + seconds : seconds);
-      console.log(workTime);
-    }, 1000);
-    
-    setInterval(function(){ 
+  minutes = session.workTime - 1;
+ 
+  counter = setInterval(function() { 
+    seconds--;
+    if (seconds < 0) {
       if (minutes === 0) {
-        minutes = 60;
+        endSession();
+        console.log('sessions ended');
+      } else {
+        seconds = 59;
+        minutes--;
       }
-      minutes -= 1;
-      time.innerHTML = minutes + ':' + seconds;
-      console.log(workTime);
-    }, 60000);
-  } else { 
-    UpdateTime();
-    seconds = 60;
-    minutes = workTime;
-  }
+    } 
+    
+    time.innerHTML = minutes + ':' + (seconds < 10 ? '0' + seconds : seconds);
+  }, 1000);
+
+  
+  console.log('session started');
+    
+}
+
+function endSession() {
+  clearInterval(counter);
+  console.log('session Ended');
 }
 
 
