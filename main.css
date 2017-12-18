@@ -59,6 +59,10 @@ button {
   padding-bottom: 10px;
 }
 
+button:focus {
+  outline: 0;
+}
+
 h3 {
   background-color: #faf4d5;
   display: block;

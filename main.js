@@ -10,68 +10,70 @@ var subWorkBtn = document.querySelector('#sub-work');
 var time = document.querySelector('.time');
 var startTimerBtn = document.querySelector('.pomodoro');
 var redFillColor = document.querySelector('.timer');
+var sessionType = document.querySelector('.session-type');
 
 var session = {
   breakTime: 5,
   workTime: 25,
+  isInSession: true
 }
 
 var counter;
 
 startTimerBtn.addEventListener('click', function() {
-  startSession();
+  manageSession();
 });
 
 addBreakBtn.addEventListener('click', function() {
-  session.breakTime += 1;
   UpdateTime();
+  session.isInSession = true;
+  session.breakTime += 1;
 });
 
 subBreakBtn.addEventListener('click', function() {
-  
+  UpdateTime();
+  session.isInSession = true;
   if (session.breakTime <= 1) {
     session.breakTime = 1;
   } else {
     session.breakTime -= 1;
   }
-
-  UpdateTime();
 });
 
 addWorkBtn.addEventListener('click', function() {
-  session.workTime += 1;
   UpdateTime();
+  session.isInSession = true;
+  session.workTime += 1;
 });
 
 subWorkBtn.addEventListener('click', function() {
+  UpdateTime();
+  session.isInSession = true;
   if (session.workTime <= 1) {
     session.workTime = 1;
   } else {
     session.workTime -= 1;
   }
-
-  UpdateTime();
 });
 
 function UpdateTime() { 
+  endSession();
   breakTimeCon.innerHTML = session.breakTime;
   workTimeCon.innerHTML = session.workTime;
   time.innerHTML = session.workTime + ':00';
-  endSession();
 }
 
-function startSession() {
+function startSession(minutes) {
   
-  var seconds = 60, minutes;
-  minutes = session.workTime - 1;
+  var seconds = 60;
   var fill = 110/minutes;
  
   counter = setInterval(function() { 
     seconds--;
-    if (seconds < 0) {
+    if (seconds === 0) {
       if (minutes === 0) {
         endSession();
-        console.log('sessions ended');
+        manageSession();
       } else {
         seconds = 59;
         minutes--;
@@ -83,8 +85,6 @@ function startSession() {
     time.innerHTML = minutes + ':' + (seconds < 10 ? '0' + seconds : seconds);
   }, 1000);
 
-  
-  console.log('session started');
     
 }
 
@@ -94,5 +94,23 @@ function endSession() {
   console.log('session Ended');
 }
 
+function manageSession() {
+  var minutes;
+  
+  if (session.isInSession) {
+    session.isInSession = false;
+    console.log('Work Time!');
+    minutes = session.workTime - 1;
+    sessionType.innerHTML = 'Work Time';
+    startSession(minutes);
+  } else {
+    session.isInSession = true;
+    console.log('Break Time!');
+    minutes = session.breakTime - 1;
+    sessionType.innerHTML = 'Break Time';
+    startSession(minutes);
+  }
+  
+}
 
 UpdateTime();
