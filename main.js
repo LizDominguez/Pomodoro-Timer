@@ -9,6 +9,7 @@ var addWorkBtn = document.querySelector('#add-work');
 var subWorkBtn = document.querySelector('#sub-work');
 var time = document.querySelector('.time');
 var startTimerBtn = document.querySelector('.pomodoro');
+var redFillColor = document.querySelector('.timer');
 
 var session = {
   breakTime: 5,
@@ -63,6 +64,7 @@ function startSession() {
   
   var seconds = 60, minutes;
   minutes = session.workTime - 1;
+  var fill = 110/minutes;
  
   counter = setInterval(function() { 
     seconds--;
@@ -73,9 +75,11 @@ function startSession() {
       } else {
         seconds = 59;
         minutes--;
+        fill += fill;
+        redFillColor.style.height = fill + '%';
       }
     } 
-    
+
     time.innerHTML = minutes + ':' + (seconds < 10 ? '0' + seconds : seconds);
   }, 1000);
 
@@ -86,6 +90,7 @@ function startSession() {
 
 function endSession() {
   clearInterval(counter);
+  redFillColor.style.height = '0%';
   console.log('session Ended');
 }
 
