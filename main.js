@@ -77,6 +77,7 @@ function startSession(minutes) {
     if (seconds === 0) {
       if (minutes === 0) {
         endSession();
+        document.getElementById('ring').play();
         manageSession();
       } else {
         seconds = 59;
