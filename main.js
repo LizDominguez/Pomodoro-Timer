@@ -15,56 +15,52 @@ let breakTimeCon = document.querySelector('#break-time'),
 let session = {
   breakTime: 5,
   workTime: 25,
-  isInSession: true
+  timeToWork: true
 }
 
-let counter,
-    sessionStart = true;
+let counter;
 
 startTimerBtn.addEventListener('click', function() {
-  if (sessionStart === true) {
+  if (session.timeToWork === true) {
     manageSession();
-    sessionStart = false;
+    session.timeToWork = false;
   } else {
     endSession();
-    sessionStart = true;
+    session.timeToWork = true;
   }
-  
 });
 
 addBreakBtn.addEventListener('click', function() {
-  UpdateTime();
-  session.isInSession = true;
   session.breakTime += 1;
+  UpdateTime();
 });
 
 subBreakBtn.addEventListener('click', function() {
-  UpdateTime();
-  session.isInSession = true;
   if (session.breakTime <= 1) {
     session.breakTime = 1;
   } else {
     session.breakTime -= 1;
   }
+  UpdateTime();
 });
 
 addWorkBtn.addEventListener('click', function() {
-  UpdateTime();
-  session.isInSession = true;
   session.workTime += 1;
+  UpdateTime();
 });
 
 subWorkBtn.addEventListener('click', function() {
-  UpdateTime();
-  session.isInSession = true;
+  session.timeToWork = true;
   if (session.workTime <= 1) {
     session.workTime = 1;
   } else {
     session.workTime -= 1;
   }
+  UpdateTime();
 });
 
 function UpdateTime() { 
+  session.timeToWork = true;
   endSession();
   breakTimeCon.innerHTML = session.breakTime;
   workTimeCon.innerHTML = session.workTime;
@@ -103,20 +99,17 @@ function endSession() {
 }
 
 function manageSession() {
-  var minutes;
-  
-  if (session.isInSession) {
-    session.isInSession = false;
+  if (session.timeToWork) {
+    session.timeToWork = false;
     console.log('Work Time!');
     sessionType.innerHTML = 'Work Time';
     startSession(session.workTime - 1);
   } else {
-    session.isInSession = true;
+    session.timeToWork = true;
     console.log('Break Time!');
     sessionType.innerHTML = 'Break Time';
     startSession(session.breakTime - 1);
-  }
-  
+  }  
 }
 
 UpdateTime();
